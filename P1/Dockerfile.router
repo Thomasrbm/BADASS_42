@@ -1,0 +1,26 @@
+FROM alpine:latest
+
+RUN apk add --no-cache \
+        frr \
+        busybox-extras \
+        iproute2 \
+        iputils \
+        tcpdump
+
+# Fichiers de configuration FRR 
+COPY daemons    /etc/frr/daemons
+COPY frr.conf   /etc/frr/frr.conf
+COPY vtysh.conf /etc/frr/vtysh.conf
+
+# FRR refuse de demarrer si les permissions sont mauvaises
+RUN chown -R frr:frr /etc/frr && \
+    chmod 640 /etc/frr/daemons /etc/frr/frr.conf /etc/frr/vtysh.conf && \
+    mkdir -p /var/run/frr /var/log/frr && \
+    chown -R frr:frr /var/run/frr /var/log/frr
+
+# script qui lance les demons FRR puis passe la main au shell.
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
+ENTRYPOINT ["/usr/local/bin/start.sh"]
+CMD ["/bin/sh"]
