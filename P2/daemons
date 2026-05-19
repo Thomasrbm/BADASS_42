@@ -1,0 +1,37 @@
+# /etc/frr/daemons
+
+# dit a frr les services used
+zebra=yes
+bgpd=yes
+ospfd=yes
+isisd=yes
+
+# staticd gere les routes statiques (utile pour debug, pas demande par
+# le sujet mais lance par defaut chez FRR).
+staticd=yes
+
+# on desac les autres demons : useless
+ospf6d=no
+ripd=no
+ripngd=no
+pimd=no
+ldpd=no
+nhrpd=no
+eigrpd=no
+babeld=no
+sharpd=no
+pbrd=no
+bfdd=no
+fabricd=no
+vrrpd=no
+pathd=no
+
+# le shell special de FRR
+vtysh_enable=yes
+
+# tout sur local host
+zebra_options="  -A 127.0.0.1 -s 90000000"
+bgpd_options="   -A 127.0.0.1"
+ospfd_options="  -A 127.0.0.1"
+isisd_options="  -A 127.0.0.1"
+staticd_options="-A 127.0.0.1"

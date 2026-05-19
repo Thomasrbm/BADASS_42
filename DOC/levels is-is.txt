@@ -1,0 +1,26 @@
+BACKBONE (Level 2)
+                    
+        ┌──────────────────────────────────────┐
+        │                                      │
+   [Core-Paris]────────────[Core-Lyon]────[Core-Marseille]
+        │                       │                  │
+   ═════╪════════════      ═════╪═════════    ═════╪══════════
+        │  Area 49.0001       │  Area 49.0002    │  Area 49.0003
+        │     PARIS           │     LYON         │   MARSEILLE
+        │   (Level 1)         │   (Level 1)      │   (Level 1)
+        │                     │                  │
+   [Access-Paris-1]      [Access-Lyon-1]   [Access-Marseille-1]
+   [Access-Paris-2]      [Access-Lyon-2]   [Access-Marseille-2]
+   [Access-Paris-3]      [Access-Lyon-3]   
+        │                     │                  │
+     clients Paris        clients Lyon       clients Marseille
+
+
+
+
+
+
+intra cest dans un core   = lvl 1 
+
+
+inter = level 2  backbone

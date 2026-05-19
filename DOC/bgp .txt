@@ -1,0 +1,15 @@
+
+
+
+il envoit paquet et des qu un routeur le capte il sait qeu c est son voisin
+
+
+
+
+Routeur Orange (IP 1.2.3.4)  ←── TCP/179 ──→  Routeur Free (IP 5.6.7.8)
+   AS 3215                                        AS 12322
+
+
+
+
+il identifie l ip du routeur precis et le numero de son AS

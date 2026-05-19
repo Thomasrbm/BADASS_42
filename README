@@ -1,0 +1,137 @@
+
+
+
+===================== Partie 1   (template de host et de routeur qu on reuse partout apres)
+
+
+juste faire des docker qui serviront de moule pour les partie d apres sans  ip sans rien on attribuera dans les parties suivante
+
+
+===================== Partie 2   (tout sous cmd ip + partie1)
+
+
+
+
+Qu est ce qui differencie reseau LAN de non LAN ?  
+
+=> pouvoir faire un broadcast et que ton autre host le recoive.
+
+en gros qu il puisse recevoir une requete ARP
+
+
+
+( avoir des rack de diff data center sur le meme reseau logique  = ip fix meme si demenagement car ip full gerer par soi meme en local)
+
+
+
+
+  on va inclure les sh dans le gns3 si on le fait dans les images docker faut faire 4 docker file 
+  et on perd le cote moule generaliste des images
+
+
+
+  _s pour statis
+  _g group (multicast)
+  _host machine finlae 
+
+
+
+    2 host distant veulent croire etre sur le meme LAN
+  je suis  192.168.42.1 et je veux 192.168.42.2 dans le /24
+
+  pb : sont separer par reseau IP le ping passe pas.
+
+
+donc  j envoie sur ca
+
+
+le faux reseau c est le notre  192.168.42.1  -> 192.168.42.2
+
+le vrai c est " l underlay"  et donc c est entre les 2 routeur 
+
+routeur1 ────── switch ────── routeur2
+10.0.0.1                      10.0.0.2
+
+
+
+
+
+arp request passe par le routeur pour broadcast routeur recoit sur eth1
+
+
+on cree une interface virtuelle vxlan10 faut que ca ressorte par la.
+
+
+
+
+on envoit requete arp depuis host1
+
+[Ether: src=MAC_host1, dst=ff:ff:ff:ff:ff:ff | ARP: who has 192.168.42.2?]
+
+
+la trame arp et en broadcast donc sur FF:FF:FF etc
+
+
+
+br0 du routeur voit que c est broadcast  :  c est une interface special a laquelle on attache deux autres interface 
+
+
+
+
+on en a besoin pour changer la sortie de eth1 sinon si tu recois sur 1 ca sort sur 1 donc br0 fait rentrer par 1
+ressort sur vxlan
+
+
+sort par vxlan
+
+
+de base le paquet est ARP ou ICMP (donc ip)  et on lui rajotue des truc avec le vxlan
+
+
+
+[Ether: src=MAC_host1, dst=ff:ff:ff:ff:ff:ff | ARP: who has 192.168.42.2?]
++
+[Ether underlay | IP 10.0.0.1→10.0.0.2 | UDP 4789 | VXLAN VNI=10 | ARP INTACTE ]
+=
+[Ether underlay | IP 10.0.0.1→10.0.0.2 | UDP 4789 | VXLAN VNI=10 | Ether host: src=MAC_host1, dst=ff:ff... | ARP: who has 192.168.42.2?]
+
+
+
+Donc les requetes arp qui sont tres frequentes sur reseau local sont possible
+de base arp impossible de passer par ip passe que par ethernet/wifi
+
+meme pour les icmp (layer ip 3)
+les communication ip se font par ip du rooter pas celles du lan local donc simple en local de ping sont pote sur l ip local qu on connait
+mais en realite ca passe par le routeur
+
+
+
+
+
+
+
+
+
+
+============= eval
+
+
+copier les scripts static  
+
+
+puis ping (wirkeshark voir)
+
+
+puis del ip link del vxlan10 sur les deux routeur
+
+
+refaire en le script en groupe 
+
+
+
+ip maddr show dev eth0 => voit le 239 du groupe 
+
+
+
+
+===================== Partie 3  (tout sous cmd ip + partie1)

@@ -1,0 +1,3 @@
+
+
+vieux ssh des annes 70  = ouvre un shell juse en ayant l ip de la machine.
