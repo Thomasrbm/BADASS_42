@@ -1,0 +1,4 @@
+
+
+
+code du vxlan,  10 pour la p2 par exemple
