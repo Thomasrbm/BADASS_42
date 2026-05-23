@@ -1,0 +1,23 @@
+FROM alpine:latest
+
+RUN apk add --no-cache \
+        frr \
+        busybox-extras \
+        iproute2 \
+        iputils \
+        tcpdump
+
+COPY daemons    /etc/frr/daemons
+COPY frr.conf   /etc/frr/frr.conf
+COPY vtysh.conf /etc/frr/vtysh.conf
+
+RUN chown -R frr:frr /etc/frr && \
+    chmod 640 /etc/frr/daemons /etc/frr/frr.conf /etc/frr/vtysh.conf && \
+    mkdir -p /var/run/frr /var/log/frr && \
+    chown -R frr:frr /var/run/frr /var/log/frr
+
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
+ENTRYPOINT ["/usr/local/bin/start.sh"]
+CMD ["/bin/sh"]
