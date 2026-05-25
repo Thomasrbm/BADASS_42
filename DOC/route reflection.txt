@@ -1,0 +1,12 @@
+
+
+
+c est le RR le routeur qui centralise les echange de MAC via EVPN bgp
+
+
+
+mais pas les envoit de paquet, les envoit de paquet se font classiquement via ip protocol en unicast dijkstra
+
+
+donc en gros chaque memebre unicast via bgp pour avoir les MAC 
+Et unicast entre eux pour se parler 

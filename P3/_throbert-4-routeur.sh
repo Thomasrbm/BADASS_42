@@ -13,6 +13,16 @@ ip link set eth2 up
 ip addr add 10.0.34.2/30 dev eth2
 
 
+
+
+# met opsf en ecoute sur les 3 interface et ecoute les ip de chaque routeur 
+
+# meme AS + desac bgp calssique pour evpn
+
+# cree un groupe LEAVES et add tout les ip neigh dessus sur le meme AS
+# la loopback .4 sera source pour parler aux autres leaves 
+# neighbor LEAVES route-reflector-client = les prend en clien dpuis le .4
+
 vtysh <<'EOF'
 configure terminal
 

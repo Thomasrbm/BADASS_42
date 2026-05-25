@@ -116,6 +116,20 @@ mais en realite ca passe par le routeur
 ============= eval
 
 
+
+
+
+
+===== P2
+
+
+
+static = hard coder les ip, dire qui est le next hoop quel vtep
+multicast = remplace remote par group, envoit par le group
+
+
+
+
 copier les scripts static  
 
 

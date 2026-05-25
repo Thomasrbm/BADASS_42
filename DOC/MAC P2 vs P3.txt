@@ -1,0 +1,63 @@
+
+=========== Partie 2 
+
+les 2 vtep apprennent les MAC en voyant le traffic
+
+
+
+le bridge du ROUTEUR br0 a 2 interface
+
+eth1 (host A) et vxlan10 (tunnel)
+
+FDB (forwarding db) 
+
+
+
+
+MAC AA → eth1 vers vlan pour   Mac BB de host2 
+fdb connait pas BB
+
+
+bridge note : 
+
+AA → eth1
+BB → vxlan10
+
+
+
+
+et comme le vxlan est soit hardcode en static soit multi cast il flood ou envoit au destinateur vxlan 10 et trouve
+
+
+
+
+
+
+
+=========== Partie 3 
+
+
+
+
+
+ Les routesur des qu un host qui se connect il dit au routeur RR :
+ 
+ " j ai ce host avec cette MAC a tout le monde  "
+
+ le RR le redit a tout le reseau. 
+
+
+
+
+ca c est BGP EVPN : 
+ 
+bgp pour  layer ip entre router et RR etc  (transport)
+Evpn pour link ethernet ip (extension layer 2)
+
+
+
+
+
+
+
+

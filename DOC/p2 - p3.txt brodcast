@@ -1,0 +1,59 @@
+
+
+pas de brodcast car  brocast c est tu parle a tous meme les non interesse 
+et garde que ceux qui ont besoin
+
+
+
+
+
+PARTIE 2
+
+
+soit tu parle direct en hardcoded au bon 
+
+soit tu t abonne au groupe multicast et seul abos recoivent
+
+pas de centralite
+
+
+
+
+
+pb : nous on est connect en direct mais en vrai
+
+il y a d autre routeur entre nos deux routeur d entreprise
+
+donc on doit user de PIM et IGMP qui conserve le multicast a travers tout les intermediaire
+sur chaque intermedaier 
+
+
+
+en stqtiaue pas ce pb car on dit juste envoit vers ce routeur mais 
+le script devient hyper long tu dois ajouter chaque routeur a la main.
+
+
+
+
+
+
+
+
+PARTIE 3 
+
+
+
+centralise sur le RR
+
+tout le monde s annonce que au RR et lui redistribue il sait qui est sur le reseau
+
+
+en gros bgp fait les maj d arp sur les routeurs qui stock les MAC du reseau a chaque maj
+
+et quand le host veut une MAC il parle eft au routeur mais ne broadcast jamais
+
+
+
+
+et quand host1 ping host 2 il utilise le protocol ip de base en unicast donc pas de pb de multicast 
+le chemin le plus court est use classiquement

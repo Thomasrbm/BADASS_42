@@ -1,0 +1,71 @@
+
+
+1/ make pour build les images docker qui serviront pour gns3
+
+2/ load le fichier .gns3 dans gns3
+
+3/ up les docker connected
+
+4/ tester dans les consoles
+
+
+
+==== eval
+
+
+consol 
+
+
+ps : voir les services
+hostname (sont set par gns) , celui de frr lui est interne.
+
+ip a : interface sans ip = nickel.
+
+
+
+explications : 
+
+
+1/ gns = Graphical Network Simulator  on dessine un reseau
+fait tourner des docker donne acces, les connecte etc.
+
+2/ bgp protocol internet pour dire ls voisin d un routeur ( on hard code les voisins ), rest est dynamique
+pas de routeur malveillant en voisin.
+
+
+(ospf = full dynamique mais moins de controle), donc souvent juste use dans une meme entreprise.
+
+
+
+
+3/ layer 2 et 3 
+
+
+3 L2 = reseau local arp, eth wifi et 3 ip icmp inter routeur
+
+
+4/ rooting packet soft = 
+
+logiciel qui transforme une machine en routeur en :
+
+- analysant ip de destination des rentrant
+- rediriger vers bonne interface
+
+
+FRR (Quagge et zebra inclue), va use des protocoles bgp ospf ou isis  et centraliser leur reponse pour donner le meilleur
+resultat
+
+
+5, 6 / bgpd et ospfd  = les daemons 
+
+
+7/ rooting engine 
+
+c est zebra qui fait le chef d orchestre et qui choisit le meilleur resutlat au final
+
+
+8/ Busybox
+
+logiciel allege qui regroupe une version lightweigt de pleins de binaire en un seul.
+
+

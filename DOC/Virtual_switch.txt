@@ -1,0 +1,8 @@
+'
+
+
+le bridge EST le virtual switch
+
+
+
+le switch entre routeur c est l equivalent des cables ethernet. 

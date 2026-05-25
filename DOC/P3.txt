@@ -1,0 +1,28 @@
+
+
+
+
+
+chaque routeur a des loopback, sera leur ip id de routeur.
+ip source
+
+
+
+chaque host  192.168.42.1, 2 et 3  a son ip private
+
+
+chaque routeur  parle au host depuis un eth1  il bridge cela vers un vxlan sur son ip loopback
+
+
+
+OSPF + BGP EVPN
+
+
+
+
+
+
+
+
+
+

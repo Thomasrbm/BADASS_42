@@ -1,0 +1,49 @@
+
+
+
+
+MPLS = Multi-Protocol Label Switching.
+
+
+encapsule les tram avec un label, regarde plus l ip dest a chaque jump
+va plus vite
+
+
+
+
+
+
+
+
+
+EVPN =  Ethernet Virtual Private Network 
+annonce juste quel routeur a quel MAC derriere lui
+
+
+
+
+
+avec advertise-all-vni  : le daemon zebra surveille la FDB du br0
+host envoi a routeur ARP, le vlan retient pas, sen fout 
+
+
+mais le et1 si et donc zebra note et il donne a bgpd
+
+
+des qu il a la MAC il envoit a RR qui envoit a tous .
+
+
+
+
+
+bgp s adresse au Lo pour id chaque routeur.
+mais il passer par eth0 pour envoyer
+
+
+le lo est virtuel pas physique donc si le routeur est en vie il sera la.
+mais si on doit changer un cable ou si il down mais pas le routeur entier il peut changer.
+
+
+
+
+donc le RR est centraliseur, control plane qui redistribue

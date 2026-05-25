@@ -1,0 +1,36 @@
+
+
+(automatique)
+OSPF  = Underlay (L3 physique)  => comment joindre une ip dans mon reseau interne
+
+a la base branched au cable ethernet. il a ses voisin comme ca et renvoit les voisin de voisin au routeur de base.
+il dresse une carte et peut faire les chemin court avec algo Dijkstra.
+
+ LSA (Link-State Advertisements) = chaque routeur dit qui il a en voisins.
+
+
+
+
+
+
+IS-IS c est comme OSPF, askip scale mieux mais moins repandu
+
+
+
+
+(hard coded)
+BGP  =  joindre ip d un autre reseau AS =  internet de base
+declare manuellement les voisins
+
+paradoxallement cest mieux pour internet car on choisit vraiment qui est sur quoi.
+plus leger, chaque routeur n a pas toute la carte d internet en internet.
+
+
+
+
+
+
+
+
+
+BGP EVPN (extension du bgp de base) = Overlay L2 => joindre MAC et vni de mon VXLAN
