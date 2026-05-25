@@ -1,0 +1,81 @@
+
+
+1/ Vxlan vs Vlan 
+
+2/ switch encountered 
+
+3/ bridge encountered
+
+
+
+4/ Brodcast vs multicast
+
+
+5/  expected operation of topology
+
+
+
+
+ip -d link show vxlan10 | grep "vxlan id"  
+
+voir id a 10
+
+
+
+
+===== cmd static
+
+
+le deploy.sh 
+
+check ip a => chaque ip et ping
+
+check wireshark :
+
+si pb : 
+sudo dpkg-reconfigure wireshark-common
+sudo usermod -aG wireshark $USER
+sudo chmod +x /usr/bin/dumpcap
+
+deco reco de la session
+
+
+- filtre vxlan
+- capture sur une ligne ping et voir
+- pour "clean" faut stop wire puis gns3 stop capture CAR 
+car gns3 passe par pcap file pour produire les packet wireshark lit ce 
+file donc doivent etre synchro les 2.
+
+
+
+voir le static :  sur router consol 
+-  ip -d link show vxlan10
+
+- ip -d link show vxlan10 | grep vxlan
+(le remote prouve le static)
+
+
+
+
+clean
+
+
+
+
+=== cmd multicast
+
+re deploy
+
+
+- ip -d link show vxlan10 | grep vxlan
+
+on voit group.
+
+
+
+
+filtre ip.dst == 239.1.1.1 
+
+on voit le ping partir par le group
+
+la reply est unicast donc faut enlever le filtre
