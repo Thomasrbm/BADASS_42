@@ -1,30 +1,41 @@
 #!/bin/sh
 
+# RR - Route Reflector
+# eth0 -> router-1 (10.0.14.0/30)
+# eth1 -> router-2 (10.0.24.0/30)
+# eth2 -> router-3 (10.0.34.0/30)
+
 ip link set lo up
+ip addr flush dev lo
 ip addr add 1.1.1.4/32 dev lo
 
 ip link set eth0 up
+ip addr flush dev eth0
 ip addr add 10.0.14.2/30 dev eth0
 
 ip link set eth1 up
+ip addr flush dev eth1
 ip addr add 10.0.24.2/30 dev eth1
 
 ip link set eth2 up
+ip addr flush dev eth2
 ip addr add 10.0.34.2/30 dev eth2
-
-
-
-
-# met opsf en ecoute sur les 3 interface et ecoute les ip de chaque routeur 
-
-# meme AS + desac bgp calssique pour evpn
-
-# cree un groupe LEAVES et add tout les ip neigh dessus sur le meme AS
-# la loopback .4 sera source pour parler aux autres leaves 
-# neighbor LEAVES route-reflector-client = les prend en clien dpuis le .4
 
 vtysh <<'EOF'
 configure terminal
+
+interface eth0
+ ip ospf mtu-ignore
+ ip ospf network point-to-point
+exit
+interface eth1
+ ip ospf mtu-ignore
+ ip ospf network point-to-point
+exit
+interface eth2
+ ip ospf mtu-ignore
+ ip ospf network point-to-point
+exit
 
 router ospf
  ospf router-id 1.1.1.4

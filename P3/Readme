@@ -1,0 +1,121 @@
+
+
+rentre de le vtysh
+
+vtysh
+
+show ip route
+
+disable : QUE LES HOST carre rouge, run rien (mais script si)
+
+
+DISALBE AVANT LE SCRIPT
+
+
+==== no type 2 roads : verif depuis les router
+
+vtysh
+show bgp l2vpn evpn route
+
+ type 3
+  =i [3]:[0]:[32]:[1.1.1.1]
+
+ RT:65000:10
+
+AS 65K ET vni 10
+
+
+
+
+==== vteps learning : 
+
+
+dans router 1 :
+
+vtysh
+show bgp l2vpn evpn route type 2 
+
+
+launch host 1
+
+show bgp l2vpn evpn route type 2 
+ 
+ une rout est appeared
+
+ ip a , pas d ip sur l host
+
+
+
+==== enable  : run 
+
+./deploy_host.sh
+
+ping.
+
+
+==== id 10 :  ip -d link show vxlan10 | grep vxlan
+
+
+
+==== OSPF packet : 
+
+wireshark
+
+
+filtre ospf 
+
+
+
+
+1/ BGP EVPN 
+
+bgp tu configure tes voisin puis apres
+tu peux router tes packet n importe ou
+
+
+evpn = extension pour faire du layer 2 en overlay 
+
+
+
+
+2/ road reflection
+
+de base tout les routeur se parle a tous.
+
+4 vtep = 6 dialogue 
+10 = 45
+
+
+RR = un routeur central qui redirige tout.
+
+
+
+3/  VTEP
+
+VTEP = VXLAN Tunnel End Point.
+
+en gros un routeur config pour vxlan
+
+encapsule depuis le host et decapsule  vers le vxlan
+
+decapsule du vxlan vers le host 
+
+
+
+
+4/ VNI
+
+id du vxlan
+
+
+
+5/ type 2 3 roads
+
+3 = les routeur s auto annonce et disent au RR
+je suis vtep X et je suis sur VNI 10
+
+
+2=  host di j ai cette mac, routeur VTEP le partage
+autres routeur stock la MAC
+
+
