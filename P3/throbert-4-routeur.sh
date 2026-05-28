@@ -1,10 +1,5 @@
 #!/bin/sh
 
-# RR - Route Reflector
-# eth0 -> router-1 (10.0.14.0/30)
-# eth1 -> router-2 (10.0.24.0/30)
-# eth2 -> router-3 (10.0.34.0/30)
-
 ip link set lo up
 ip addr flush dev lo
 ip addr add 1.1.1.4/32 dev lo
